@@ -4,8 +4,16 @@ Bonus
 Abbellire con CSS o Bootstrap
 Inserire un bottone che al click faccia il fetch per altre 10 mail (sostituendo le altre)*/
 
-fetch("https://flynn.boolean.careers/exercises/api/random/mail")
-  .then((response) => response.json)
-  .then((data) => {
-    console.log(data);
-  });
+const emailListEL = document.getElementById("email-list");
+
+const generateEmail = () => {
+  for (let i = 0; i < 10; i++) {
+    fetch("https://flynn.boolean.careers/exercises/api/random/mail")
+      .then((response) => response.json())
+      .then((email) => {
+        emailListEL.innerHTML += `<li>${email.response}</li>`;
+      });
+  }
+};
+
+generateEmail();
